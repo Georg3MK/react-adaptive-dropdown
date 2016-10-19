@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default class Dropdown2 extends React.Component<any, any> {
+export default class Dropdown extends React.Component<any, any> {
     constructor(props: any, context: any ){
         super(props, context)
         this.state = {
@@ -11,7 +11,7 @@ export default class Dropdown2 extends React.Component<any, any> {
     render() {
         const { items } = this.props
         let itemCount = 0,
-            liHeight = 44
+            liHeight = 2
 
         return (
             <label className="dropdown" ref={"dropdown"}>
@@ -25,8 +25,8 @@ export default class Dropdown2 extends React.Component<any, any> {
                             }
                             style={
                             (this.state.direction === 'top') ?
-                                {bottom: liHeight * itemCount} :
-                                {top: liHeight * itemCount}
+                                {bottom: liHeight * itemCount + 'em'} :
+                                {top: liHeight * itemCount + 'em'}
                         }>
                             {item}
                         </li>)}
