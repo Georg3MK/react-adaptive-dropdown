@@ -46,7 +46,7 @@ export default class Dropdown2 extends React.Component<any, any> {
 
             while (!el.parentNode.classList.contains(toElement)) {
                 el = el.parentNode
-                if(el.offsetParent !== elOffset && !el.parentNode.classList.contains(toElement)) {
+                if(el.offsetParent !== elOffset) {
                     offset += el.offsetTop
                     elOffset = el.offsetParent
                 }
