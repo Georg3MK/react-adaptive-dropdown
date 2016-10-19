@@ -1,0 +1,44 @@
+{
+  "name": "react-hot-ts",
+  "version": "0.1.0",
+  "description": "Demo of React Hot Reloading + TypeScript",
+  "main": "./dist/bundle.js",
+  "dependencies": {
+    "babel-polyfill": "^6.16.0",
+    "babel-runtime": "^6.11.6",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "redux-form": "^6.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^0.14.37",
+    "@types/react-dom": "^0.14.17",
+    "@types/react-redux": "^4.4.32",
+    "@types/redux": "^3.6.31",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "awesome-typescript-loader": "^2.2.4",
+    "react-hot-loader": "^3.0.0-beta.5",
+    "source-map-loader": "^0.1.5",
+    "typescript": "^2.0.3",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "George Mk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Glavin001/react-hot-ts/issues"
+  },
+  "homepage": "https://github.com/Glavin001/react-hot-ts#readme"
+}
