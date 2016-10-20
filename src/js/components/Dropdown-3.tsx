@@ -14,7 +14,7 @@ export default class Dropdown extends React.Component<any, any> {
             liHeight = 2
 
         return (
-            <label className="dropdown-simple" ref={"dropdown"}>
+            <label className="dropdown-separate" ref={"dropdown"}>
                 <input type="checkbox"/>
                 <ul className="dropdown-list">
                     <li ref={"li"}>{this.state.currentItem}</li>

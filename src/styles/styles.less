@@ -99,14 +99,16 @@ form.add-product {
 .grid{
   width:100%;
   height:30em;
-  margin: 1.5em 0;
+  margin: 1.5em 0 20em 0;
   background:rgba(0,0,0,0.075);
   overflow:hidden;
   th, td {
     width:20%;
     padding:2.5%;
   }
-  .dropdown {
+  .dropdown,
+  .dropdown-simple,
+  .dropdown-separate {
     position:absolute;
     width:17%;
     margin:-1em 0 0 0;
@@ -114,7 +116,7 @@ form.add-product {
       position: absolute;
       left:-9999px;
     }
-    >input[type='checkbox']~.dropdown-list{ overflow:hidden }
+    >input[type='checkbox']~.dropdown-list { overflow:hidden }
     >input[type='checkbox']:checked~.dropdown-list{
       overflow:visible;
       z-index:999;
@@ -127,7 +129,15 @@ form.add-product {
         color: black
       }
     }
-
+    >input[type='checkbox']:checked~.dropdown-list:after{ content: "▲" }
+    >input[type='checkbox']~.dropdown-list:after {
+      content: "▼";
+      position: absolute;
+      top: 0;
+      right: 0.25em;
+      line-height:2em;
+      .scale(0.5; 0.5)
+    }
     .dropdown-list {
       position: relative;
       height: 2em;
@@ -146,14 +156,12 @@ form.add-product {
         border: 1px solid rgba(0,0,0,0.25);
       }
     }
-    .dropdown-list:after {
-      content: "▼";
-      position: absolute;
-      top: 0;
-      right: 0.25em;
-      line-height:2em;
-      .scale(0.5; 0.5)
-    }
+  }
+  .dropdown-simple {
+    position:inherit;
+  }
+  .dropdown-separate {
+
   }
 }
 

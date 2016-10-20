@@ -61,7 +61,6 @@ export default class Dropdown2 extends React.Component<any, any> {
                 timer = setTimeout(
                     () => {
                         this.setState({direction: findOffset(this.refs['dropdown'], dropdownHeight)})
-                        console.log('Resized')
                     }
                     ,300)
             }

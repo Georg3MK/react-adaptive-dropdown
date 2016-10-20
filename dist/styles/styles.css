@@ -97,7 +97,7 @@ form.add-product .options-block {
 .grid {
   width: 100%;
   height: 30em;
-  margin: 1.5em 0;
+  margin: 1.5em 0 20em 0;
   background: rgba(0, 0, 0, 0.075);
   overflow: hidden;
 }
@@ -106,49 +106,50 @@ form.add-product .options-block {
   width: 20%;
   padding: 2.5%;
 }
-.grid .dropdown {
+.grid .dropdown,
+.grid .dropdown-simple,
+.grid .dropdown-separate {
   position: absolute;
   width: 17%;
   margin: -1em 0 0 0;
 }
-.grid .dropdown > input[type='checkbox'] {
+.grid .dropdown > input[type='checkbox'],
+.grid .dropdown-simple > input[type='checkbox'],
+.grid .dropdown-separate > input[type='checkbox'] {
   position: absolute;
   left: -9999px;
 }
-.grid .dropdown > input[type='checkbox'] ~ .dropdown-list {
+.grid .dropdown > input[type='checkbox'] ~ .dropdown-list,
+.grid .dropdown-simple > input[type='checkbox'] ~ .dropdown-list,
+.grid .dropdown-separate > input[type='checkbox'] ~ .dropdown-list {
   overflow: hidden;
 }
-.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list {
+.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list,
+.grid .dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list,
+.grid .dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list {
   overflow: visible;
   z-index: 999;
 }
-.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list li:hover {
+.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list li:hover,
+.grid .dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list li:hover,
+.grid .dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list li:hover {
   background: rgba(0, 0, 255, 0.75);
   color: white;
 }
-.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover {
+.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover,
+.grid .dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover,
+.grid .dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover {
   background: white;
   color: black;
 }
-.grid .dropdown .dropdown-list {
-  position: relative;
-  height: 2em;
-  overflow: hidden;
+.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list:after,
+.grid .dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list:after,
+.grid .dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list:after {
+  content: "▲";
 }
-.grid .dropdown .dropdown-list li {
-  position: absolute;
-  left: 0;
-  width: 90%;
-  height: 2em;
-  line-height: 2em;
-  padding: 0 5%;
-  background: white;
-  border: 1px solid rgba(0, 0, 255, 0.5);
-}
-.grid .dropdown .dropdown-list li:first-child {
-  border: 1px solid rgba(0, 0, 0, 0.25);
-}
-.grid .dropdown .dropdown-list:after {
+.grid .dropdown > input[type='checkbox'] ~ .dropdown-list:after,
+.grid .dropdown-simple > input[type='checkbox'] ~ .dropdown-list:after,
+.grid .dropdown-separate > input[type='checkbox'] ~ .dropdown-list:after {
   content: "▼";
   position: absolute;
   top: 0;
@@ -159,6 +160,33 @@ form.add-product .options-block {
   -ms-transform: scale(0.5, 0.5);
   -o-transform: scale(0.5, 0.5);
   transform: scale(0.5, 0.5);
+}
+.grid .dropdown .dropdown-list,
+.grid .dropdown-simple .dropdown-list,
+.grid .dropdown-separate .dropdown-list {
+  position: relative;
+  height: 2em;
+  overflow: hidden;
+}
+.grid .dropdown .dropdown-list li,
+.grid .dropdown-simple .dropdown-list li,
+.grid .dropdown-separate .dropdown-list li {
+  position: absolute;
+  left: 0;
+  width: 90%;
+  height: 2em;
+  line-height: 2em;
+  padding: 0 5%;
+  background: white;
+  border: 1px solid rgba(0, 0, 255, 0.5);
+}
+.grid .dropdown .dropdown-list li:first-child,
+.grid .dropdown-simple .dropdown-list li:first-child,
+.grid .dropdown-separate .dropdown-list li:first-child {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+.grid .dropdown-simple {
+  position: inherit;
 }
 .new {
   margin-left: 2em;
