@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-export interface WelcomeProps { user: string }
+let Welcome = (props: any) => {
+    const {user} = props
 
-export default class Welcome extends React.Component<WelcomeProps, {}> {
-    render() {
-        return (
-            <div>
-                <h2>Welcome to products management system, {this.props.user}!</h2>
-                <p>Here you can add, edit and remove products in stock.</p>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <h2>Welcome to products management system, {user}!</h2>
+            <p>Here you can add, edit and remove products in stock.</p>
+        </div>
+    )
 }
+
+export default Welcome

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default class Dropdown extends React.Component<any, any> {
+export default class DropdownSimple extends React.Component<any, any> {
     constructor(props: any, context: any ){
         super(props, context)
         this.state = {

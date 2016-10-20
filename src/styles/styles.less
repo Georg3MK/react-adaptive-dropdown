@@ -16,7 +16,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-size: 1.025em;
   font-family: sans-serif;
 }
 html,body { height:100% }
@@ -26,14 +25,14 @@ h1, h2, h3 {
   color: grey;
 }
 h1 {
-  font-size: 2em;
+  font-size: 3em;
   color: lightslategrey;
 }
 h2 {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 h3 {
-  font-size: 1.25em;
+  font-size: 1.5em;
   text-transform: uppercase;
 }
 form {
@@ -102,67 +101,71 @@ form.add-product {
   margin: 1.5em 0 20em 0;
   background:rgba(0,0,0,0.075);
   overflow:hidden;
+  th { font-size:1.25em }
   th, td {
     width:20%;
     padding:2.5%;
+    line-height:2em;
   }
-  .dropdown,
-  .dropdown-simple,
-  .dropdown-separate {
-    position:absolute;
-    width:17%;
-    margin:-1em 0 0 0;
-    >input[type='checkbox']{
-      position: absolute;
-      left:-9999px;
-    }
-    >input[type='checkbox']~.dropdown-list { overflow:hidden }
-    >input[type='checkbox']:checked~.dropdown-list{
-      overflow:visible;
-      z-index:999;
-      li:hover {
-        background: rgba(0,0,255,0.75);
-        color: white;
-      }
-      li:first-child:hover {
-        background: white;
-        color: black
-      }
-    }
-    >input[type='checkbox']:checked~.dropdown-list:after{ content: "▲" }
-    >input[type='checkbox']~.dropdown-list:after {
-      content: "▼";
-      position: absolute;
-      top: 0;
-      right: 0.25em;
-      line-height:2em;
-      .scale(0.5; 0.5)
-    }
-    .dropdown-list {
-      position: relative;
-      height: 2em;
-      overflow:hidden;
-      li{
-        position:absolute;
-        left:0;
-        width:90%;
-        height:2em;
-        line-height:2em;
-        padding:0 5%;
-        background: white;
-        border: 1px solid rgba(0,0,255,0.5);
-      }
-      li:first-child {
-        border: 1px solid rgba(0,0,0,0.25);
-      }
-    }
-  }
-  .dropdown-simple {
-    position:inherit;
-  }
-  .dropdown-separate {
+}
 
+.dropdown,
+.dropdown-simple,
+.dropdown-separate {
+  position:absolute;
+  width:17%;
+  margin:-1em 0 0 0;
+  font-size: 1.2em;
+  >input[type='checkbox']{
+    position: absolute;
+    left:-9999px;
   }
+  >input[type='checkbox']~.dropdown-list { overflow:hidden }
+  >input[type='checkbox']:checked~.dropdown-list{
+    overflow:visible;
+    z-index:999;
+    li:hover {
+      background: rgba(0,0,255,0.75);
+      color: white;
+    }
+    li:first-child:hover {
+      background: white;
+      color: black
+    }
+  }
+  >input[type='checkbox']:checked~.dropdown-list:after{ content: "▲" }
+  >input[type='checkbox']~.dropdown-list:after {
+    content: "▼";
+    position: absolute;
+    top: 0;
+    right: 0.25em;
+    line-height:2em;
+    .scale(0.5; 0.5)
+  }
+  .dropdown-list {
+    position: relative;
+    height: 2em;
+    overflow:hidden;
+    li{
+      position:absolute;
+      left:0;
+      width:90%;
+      height:2em;
+      line-height:2em;
+      padding:0 5%;
+      background: white;
+      border: 1px solid rgba(0,0,255,0.5);
+    }
+    li:first-child {
+      border: 1px solid rgba(0,0,0,0.25);
+    }
+  }
+}
+.dropdown-simple {
+  position:inherit;
+}
+.dropdown-separate {
+  margin:2.25% 0 0 2.25%;
 }
 
 .new {

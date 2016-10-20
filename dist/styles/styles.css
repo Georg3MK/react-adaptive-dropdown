@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-size: 1.025em;
   font-family: sans-serif;
 }
 html,
@@ -15,14 +14,14 @@ h3 {
   color: grey;
 }
 h1 {
-  font-size: 2em;
+  font-size: 3em;
   color: lightslategrey;
 }
 h2 {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 h3 {
-  font-size: 1.25em;
+  font-size: 1.5em;
   text-transform: uppercase;
 }
 form {
@@ -101,55 +100,60 @@ form.add-product .options-block {
   background: rgba(0, 0, 0, 0.075);
   overflow: hidden;
 }
+.grid th {
+  font-size: 1.25em;
+}
 .grid th,
 .grid td {
   width: 20%;
   padding: 2.5%;
+  line-height: 2em;
 }
-.grid .dropdown,
-.grid .dropdown-simple,
-.grid .dropdown-separate {
+.dropdown,
+.dropdown-simple,
+.dropdown-separate {
   position: absolute;
   width: 17%;
   margin: -1em 0 0 0;
+  font-size: 1.2em;
 }
-.grid .dropdown > input[type='checkbox'],
-.grid .dropdown-simple > input[type='checkbox'],
-.grid .dropdown-separate > input[type='checkbox'] {
+.dropdown > input[type='checkbox'],
+.dropdown-simple > input[type='checkbox'],
+.dropdown-separate > input[type='checkbox'] {
   position: absolute;
   left: -9999px;
 }
-.grid .dropdown > input[type='checkbox'] ~ .dropdown-list,
-.grid .dropdown-simple > input[type='checkbox'] ~ .dropdown-list,
-.grid .dropdown-separate > input[type='checkbox'] ~ .dropdown-list {
+.dropdown > input[type='checkbox'] ~ .dropdown-list,
+.dropdown-simple > input[type='checkbox'] ~ .dropdown-list,
+.dropdown-separate > input[type='checkbox'] ~ .dropdown-list {
   overflow: hidden;
 }
-.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list,
-.grid .dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list,
-.grid .dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list {
+.dropdown > input[type='checkbox']:checked ~ .dropdown-list,
+.dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list,
+.dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list {
   overflow: visible;
   z-index: 999;
 }
-.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list li:hover,
-.grid .dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list li:hover,
-.grid .dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list li:hover {
+.dropdown > input[type='checkbox']:checked ~ .dropdown-list li:hover,
+.dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list li:hover,
+.dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list li:hover {
   background: rgba(0, 0, 255, 0.75);
   color: white;
 }
-.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover,
-.grid .dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover,
-.grid .dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover {
+.dropdown > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover,
+.dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover,
+.dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover {
   background: white;
   color: black;
 }
-.grid .dropdown > input[type='checkbox']:checked ~ .dropdown-list:after,
-.grid .dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list:after,
-.grid .dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list:after {
+.dropdown > input[type='checkbox']:checked ~ .dropdown-list:after,
+.dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list:after,
+.dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list:after {
   content: "▲";
 }
-.grid .dropdown > input[type='checkbox'] ~ .dropdown-list:after,
-.grid .dropdown-simple > input[type='checkbox'] ~ .dropdown-list:after,
-.grid .dropdown-separate > input[type='checkbox'] ~ .dropdown-list:after {
+.dropdown > input[type='checkbox'] ~ .dropdown-list:after,
+.dropdown-simple > input[type='checkbox'] ~ .dropdown-list:after,
+.dropdown-separate > input[type='checkbox'] ~ .dropdown-list:after {
   content: "▼";
   position: absolute;
   top: 0;
@@ -161,16 +165,16 @@ form.add-product .options-block {
   -o-transform: scale(0.5, 0.5);
   transform: scale(0.5, 0.5);
 }
-.grid .dropdown .dropdown-list,
-.grid .dropdown-simple .dropdown-list,
-.grid .dropdown-separate .dropdown-list {
+.dropdown .dropdown-list,
+.dropdown-simple .dropdown-list,
+.dropdown-separate .dropdown-list {
   position: relative;
   height: 2em;
   overflow: hidden;
 }
-.grid .dropdown .dropdown-list li,
-.grid .dropdown-simple .dropdown-list li,
-.grid .dropdown-separate .dropdown-list li {
+.dropdown .dropdown-list li,
+.dropdown-simple .dropdown-list li,
+.dropdown-separate .dropdown-list li {
   position: absolute;
   left: 0;
   width: 90%;
@@ -180,13 +184,16 @@ form.add-product .options-block {
   background: white;
   border: 1px solid rgba(0, 0, 255, 0.5);
 }
-.grid .dropdown .dropdown-list li:first-child,
-.grid .dropdown-simple .dropdown-list li:first-child,
-.grid .dropdown-separate .dropdown-list li:first-child {
+.dropdown .dropdown-list li:first-child,
+.dropdown-simple .dropdown-list li:first-child,
+.dropdown-separate .dropdown-list li:first-child {
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
-.grid .dropdown-simple {
+.dropdown-simple {
   position: inherit;
+}
+.dropdown-separate {
+  margin: 2.25% 0 0 2.25%;
 }
 .new {
   margin-left: 2em;
