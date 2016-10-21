@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Welcome from './Welcome';
-import Grid from './Grid';
-//import AddProductForm from '../containers/AddProductForm';
+import Grid from './Grid-2';
 
 export default class App extends React.Component<any, any> {
     render() {
