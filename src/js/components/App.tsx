@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Welcome from './Welcome';
-import Grid from './Grid-2';
+import GridBox from '../containers/GridBox';
 
 export default class App extends React.Component<any, any> {
     render() {
@@ -8,7 +8,7 @@ export default class App extends React.Component<any, any> {
             <div>
                 <h1>Lets add some goods to our store!</h1>
                 <Welcome user="George"/>
-                <Grid />
+                <GridBox />
             </div>
         );
     }

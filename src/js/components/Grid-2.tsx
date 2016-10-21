@@ -2,7 +2,6 @@ import * as React from 'react';
 import DropdownBox from '../containers/DropdownBox';
 import DropdownSimple from './Dropdown';
 import Dropdown from './Dropdown-2';
-import DropdownSeparate from './Dropdown-4';
 
 export default class Grid extends React.Component<any, any> {
     constructor(props:any, context:any) {
@@ -13,10 +12,9 @@ export default class Grid extends React.Component<any, any> {
     }
 
     render() {
-        let list1 = ['lamborghini', 'ferrari', 'porsche', 'aston martin', 'maserati'],
-            list2 = ['audi', 'BMW', 'mercedes', 'lexus', 'infinity'],
-            list3 = ['volkswagen', 'skoda', 'toyota', 'volvo', 'ford', 'nissan'],
-            separateCount = 0
+        const lists = this.props.lists
+        
+        let separateCount = 0
 
         return (
             <div>
@@ -33,10 +31,10 @@ export default class Grid extends React.Component<any, any> {
                     <tbody>
                     <tr>
                         <td>
-                            {<DropdownSimple items={list1}/>}
+                            {<DropdownSimple items={lists[0]}/>}
                         </td>
                         <td>
-                            {<Dropdown items={list1}/>}
+                            {<Dropdown items={lists[0]}/>}
                         </td>
                         <td ref={'separate-' + separateCount++}>Empty</td>
                         <td>
@@ -52,10 +50,10 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     <tr>
                         <td>
-                            {<DropdownSimple items={list2}/>}
+                            {<DropdownSimple items={lists[1]}/>}
                         </td>
                         <td>
-                            {<Dropdown items={list2}/>}
+                            {<Dropdown items={lists[1]}/>}
                         </td>
                         <td ref={'separate-' + separateCount++}>Empty</td>
                         <td>
@@ -70,10 +68,10 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     <tr>
                         <td>
-                            {<DropdownSimple items={list3}/>}
+                            {<DropdownSimple items={lists[2]}/>}
                         </td>
                         <td>
-                            {<Dropdown items={list3}/>}
+                            {<Dropdown items={lists[2]}/>}
                         </td>
                         <td ref={'separate-' + separateCount++}>Empty</td>
                         <td>
