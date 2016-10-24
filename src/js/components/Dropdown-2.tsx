@@ -1,15 +1,14 @@
 import * as React from 'react';
 
 export default class Dropdown extends React.Component<any, any> {
-    constructor(props: any, context: any ){
-        super(props, context)
-        this.state = {
-            currentItem: props.items[0]
-        }
-    }
 
     render() {
-        const { items } = this.props
+        const { dropdown, clickItem } = this.props
+        const id = dropdown.id,
+            items = dropdown.items,
+            currentItem = dropdown.defaultItem,
+            direction = dropdown.dropDirection
+
         let itemCount = 0,
             liHeight = 2
 
@@ -17,14 +16,16 @@ export default class Dropdown extends React.Component<any, any> {
             <label className="dropdown" ref={"dropdown"}>
                 <input type="checkbox"/>
                 <ul className="dropdown-list">
-                    <li ref={"li"}>{this.state.currentItem}</li>
+                    <li ref={"li"}>{items[currentItem]}</li>
                     {items.map((item: any) =>
                     <li key={item + itemCount++}
                         onClick={
-                            () => {this.setState({currentItem: item})}
-                        }
+                                    (function(id, item, click){
+                                        return () => click(id, item)
+                                    })(id, itemCount, clickItem)
+                                }
                         style={
-                            (this.state.direction === 'top') ?
+                            (direction === 'top') ?
                                 {bottom: liHeight * itemCount + 'em'} :
                                 {top: liHeight * itemCount + 'em'}
                         }>
@@ -37,7 +38,7 @@ export default class Dropdown extends React.Component<any, any> {
 
     componentDidMount(){
         let elem: any = this.refs['li'],
-            dropdownHeight: number = elem.offsetHeight * (this.props.items.length + 1),
+            dropdownHeight: number = elem.offsetHeight * (this.props.dropdown.items.length + 1),
             timer: any = null
 
         function findOffset(elem: any, dropdownHeight:number) {

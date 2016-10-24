@@ -1,24 +1,16 @@
 import * as React from 'react';
+import DropdownBox from '../containers/DropdownBox';
 import DropdownSimple from './Dropdown';
 import Dropdown from './Dropdown-2';
-import DropdownSeparate from './Dropdown-3';
 
 export default class Grid extends React.Component<any, any> {
-    constructor(props:any, context:any) {
-        super(props, context)
-        this.state = {
-            separates:{}
-        }
-    }
 
     render() {
-        let list1 = ['lamborghini', 'ferrari', 'porsche', 'aston martin', 'maserati'],
-            list2 = ['audi', 'BMW', 'mercedes', 'lexus', 'infinity'],
-            list3 = ['volkswagen', 'skoda', 'toyota', 'volvo', 'ford', 'nissan'],
-            separateCount = 0
+        const lists = this.props.lists
 
         return (
             <div>
+                <h2>Grid-2: updated</h2>
                 <table className="grid">
                     <thead>
                     <tr>
@@ -31,12 +23,12 @@ export default class Grid extends React.Component<any, any> {
                     <tbody>
                     <tr>
                         <td>
-                            {<DropdownSimple items={list1}/>}
+                            {<DropdownSimple items={lists[0]}/>}
                         </td>
                         <td>
-                            {<Dropdown items={list1}/>}
+                            {<DropdownBox id={2} type="joint" />}
                         </td>
-                        <td ref={'separate-' + separateCount++}>Empty</td>
+                        <td ref={'separate-0'}>Empty</td>
                         <td>
                             <select>
                                 <option>volkswagen</option>
@@ -50,12 +42,12 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     <tr>
                         <td>
-                            {<DropdownSimple items={list2}/>}
+                            {<DropdownSimple items={lists[1]}/>}
                         </td>
                         <td>
-                            {<Dropdown items={list2}/>}
+                            {<DropdownBox id={1} type="joint" />}
                         </td>
-                        <td ref={'separate-' + separateCount++}></td>
+                        <td ref={'separate-1'}>Empty</td>
                         <td>
                             <select>
                                 <option>audi</option>
@@ -68,12 +60,12 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     <tr>
                         <td>
-                            {<DropdownSimple items={list3}/>}
+                            {<DropdownSimple items={lists[2]}/>}
                         </td>
                         <td>
-                            {<Dropdown items={list3}/>}
+                            {<DropdownBox id={0} type="joint" />}
                         </td>
-                        <td ref={'separate-' + separateCount++}></td>
+                        <td ref={'separate-2'}>Empty</td>
                         <td>
                             <select>
                                 <option>lamborghini</option>
@@ -86,16 +78,16 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     </tbody>
                 </table>
-                <DropdownSeparate items={list1} pos={this.state.separates['separate-0']}/>
-                <DropdownSeparate items={list2} pos={this.state.separates['separate-1']}/>
-                <DropdownSeparate items={list3} pos={this.state.separates['separate-2']}/>
+                <DropdownBox id={0} type="separate" />
+                <DropdownBox id={1} type="separate" />
+                <DropdownBox id={2} type="separate" />
             </div>
         )
     }
 
     componentDidMount() {
-        function findPlace(refs: any) {
-            let elems: any = {}, ref: string
+        function findPlace(refs: any, setPosition: any): void {
+            let ref: string, id: number
 
             function findOffset(el: any) {
                 let offsetTop: number = el.offsetTop,
@@ -113,15 +105,12 @@ export default class Grid extends React.Component<any, any> {
 
             for (ref in refs) {
                 if (refs.hasOwnProperty(ref) && ref.toString().match(/^separate/i)) {
-                    elems[ref] = findOffset(refs[ref])
+                    id = Number(ref.match(/\d+$/)[0])
+                    setPosition(id, findOffset(refs[ref]))
                 }
             }
-            return elems
         }
 
-        this.setState({
-            separates: findPlace(this.refs)
-        })
-        this.forceUpdate()
+        findPlace(this.refs, this.props.setPosition)
     }
 }

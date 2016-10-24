@@ -1,16 +1,15 @@
 import * as React from 'react';
 
 export default class DropdownSeparate extends React.Component<any, any> {
-    constructor(props: any, context: any ){
-        super(props, context)
-        this.state = {
-            currentItem: props.items[0]
-        }
-    }
-
     render() {
-        if(this.props.pos) {
-            const {items, pos} = this.props
+        if(this.props.dropdown.position) {
+            const { dropdown, clickItem } = this.props
+            const id = dropdown.id,
+                items = dropdown.items,
+                currentItem = dropdown.defaultItem,
+                pos = dropdown.position,
+                direction = dropdown.dropDirection
+
             let itemCount = 0,
                 liHeight = 2
 
@@ -19,18 +18,19 @@ export default class DropdownSeparate extends React.Component<any, any> {
                        ref={"dropdown"}
                        style={{top: pos.top, left: pos.left}}>
                     <input type="checkbox"/>
+
                     <ul className="dropdown-list">
-                        <li ref={"li"}>{this.state.currentItem}</li>
-                        {items.map((item:any) =>
-                            <li key={item + itemCount++}
-                                onClick={
-                            () => {this.setState({currentItem: item})}
-                        }
-                                style={
-                            (this.state.direction === 'top') ?
-                                {bottom: liHeight * itemCount + 'em'} :
-                                {top: liHeight * itemCount + 'em'}
-                        }>
+                        <li ref={"li"}>{items[currentItem]}</li>
+                        {items.map((item: any) =>
+                            <li onClick={
+                                    (function(id, item, click){
+                                        return () => click(id, item)
+                                    })(id, itemCount, clickItem)
+                                }
+                                key={item + itemCount++}
+                                style={(direction === 'top') ?
+                                    {bottom: liHeight * itemCount + 'em'} :
+                                    {top: liHeight * itemCount + 'em'}}>
                                 {item}
                             </li>)}
                     </ul>
@@ -46,11 +46,16 @@ export default class DropdownSeparate extends React.Component<any, any> {
         if(offset >= dropdownHeight) { return 'bottom' }
         else { return 'top' }
     }
-
+    
     componentDidUpdate() {
-        if(!this.state.direction) {
-            let elem: any = this.refs['li'],
-                dropdownHeight: number = elem.offsetHeight * (this.props.items.length + 1),
+        if(!this.props.dropdown.dropDirection) {
+            const items = this.props.dropdown.items,
+                id = this.props.dropdown.id,
+                top = this.props.dropdown.position.top,
+                setDirection = this.props.setDirection,
+                elem: any = this.refs['li']
+
+            let dropdownHeight: number = elem.offsetHeight * (items.length + 1),
                 timer: any = null
 
             window.addEventListener('resize',
@@ -58,12 +63,12 @@ export default class DropdownSeparate extends React.Component<any, any> {
                     if(timer) { clearTimeout(timer) }
                     timer = setTimeout(
                         () => {
-                            this.setState({direction: this.findOffset(this.props.pos.top, dropdownHeight)})
+                            setDirection(id, this.findOffset(top, dropdownHeight))
                         }
                         ,300)
                 }
                 ,false)
-            this.setState({direction: this.findOffset(this.props.pos.top, dropdownHeight)})
+            setDirection(id, this.findOffset(top, dropdownHeight))
         }
     }
 }

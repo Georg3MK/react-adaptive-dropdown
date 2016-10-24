@@ -12,6 +12,12 @@ export const setValue = (dropId:number, valueId:number) => ({
     valueId
 })
 
+export const setPosition = (dropId:number, position:any) => ({
+    type: 'SET_DROPDOWN_POSITION',
+    dropId,
+    position
+})
+
 export const setDropDirection = (dropId:number, direction:string) => ({
     type: 'SET_DROPDOWN_DIRECTION',
     dropId,
