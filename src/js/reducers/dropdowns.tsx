@@ -14,6 +14,21 @@ const defaultDropdowns = [
         type: 'separated',
         items: ['volkswagen', 'skoda', 'toyota', 'volvo', 'ford', 'nissan'],
         defaultItem: 0
+    },{
+        id: 3,
+        type: 'joint',
+        items: ['volkswagen', 'golf', 'passat', 'phaeton', 'tiguan', 'tuareg'],
+        defaultItem: 0
+    },{
+        id: 4,
+        type: 'joint',
+        items: ['skoda', 'fabia', 'octavia', 'superb', 'yeti'],
+        defaultItem: 0
+    },{
+        id: 5,
+        type: 'joint',
+        items: ['BMW', '1-series', '3-series', '5-series', '7-series', 'X5'],
+        defaultItem: 0
     }
 ]
 

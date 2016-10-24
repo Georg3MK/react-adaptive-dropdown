@@ -3,7 +3,7 @@ import * as React from 'react';
 export default class DropdownSeparate extends React.Component<any, any> {
     render() {
         if(this.props.dropdown.position) {
-            const { dropdown, clickItem } = this.props
+            const { dropdown, clickItem, setDirection } = this.props
             const id = dropdown.id,
                 items = dropdown.items,
                 currentItem = dropdown.defaultItem,
@@ -16,7 +16,15 @@ export default class DropdownSeparate extends React.Component<any, any> {
             return (
                 <label className="dropdown-separate"
                        ref={"dropdown"}
-                       style={{top: pos.top, left: pos.left}}>
+                       style={{top: pos.top, left: pos.left}}
+                       onClick={
+                       () => {
+                           let offset: any = pos.top,
+                               elem: any = this.refs['dropdown'],
+                               dropHeight = elem.offsetHeight * (items.length + 2)   // because of first li and 2em margin-top
+                           setDirection(id, null, offset, dropHeight)
+                       }
+                   }>
                     <input type="checkbox"/>
 
                     <ul className="dropdown-list">
@@ -38,37 +46,5 @@ export default class DropdownSeparate extends React.Component<any, any> {
             )
         }
         else { return null }
-    }
-
-    findOffset(offset: number, dropdownHeight:number) {
-        offset = document.documentElement.clientHeight - (offset - window.pageYOffset)
-
-        if(offset >= dropdownHeight) { return 'bottom' }
-        else { return 'top' }
-    }
-    
-    componentDidUpdate() {
-        if(!this.props.dropdown.dropDirection) {
-            const items = this.props.dropdown.items,
-                id = this.props.dropdown.id,
-                top = this.props.dropdown.position.top,
-                setDirection = this.props.setDirection,
-                elem: any = this.refs['li']
-
-            let dropdownHeight: number = elem.offsetHeight * (items.length + 1),
-                timer: any = null
-
-            window.addEventListener('resize',
-                () => {
-                    if(timer) { clearTimeout(timer) }
-                    timer = setTimeout(
-                        () => {
-                            setDirection(id, this.findOffset(top, dropdownHeight))
-                        }
-                        ,300)
-                }
-                ,false)
-            setDirection(id, this.findOffset(top, dropdownHeight))
-        }
     }
 }

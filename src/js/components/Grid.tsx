@@ -1,7 +1,6 @@
 import * as React from 'react';
 import DropdownBox from '../containers/DropdownBox';
 import DropdownSimple from './Dropdown';
-import Dropdown from './Dropdown-2';
 
 export default class Grid extends React.Component<any, any> {
 
@@ -26,7 +25,7 @@ export default class Grid extends React.Component<any, any> {
                             {<DropdownSimple items={lists[0]}/>}
                         </td>
                         <td>
-                            {<DropdownBox id={2} type="joint" />}
+                            {<DropdownBox id={3} type="joint" />}
                         </td>
                         <td ref={'separate-0'}>Empty</td>
                         <td>
@@ -45,7 +44,7 @@ export default class Grid extends React.Component<any, any> {
                             {<DropdownSimple items={lists[1]}/>}
                         </td>
                         <td>
-                            {<DropdownBox id={1} type="joint" />}
+                            {<DropdownBox id={4} type="joint" />}
                         </td>
                         <td ref={'separate-1'}>Empty</td>
                         <td>
@@ -63,7 +62,7 @@ export default class Grid extends React.Component<any, any> {
                             {<DropdownSimple items={lists[2]}/>}
                         </td>
                         <td>
-                            {<DropdownBox id={0} type="joint" />}
+                            {<DropdownBox id={5} type="joint" />}
                         </td>
                         <td ref={'separate-2'}>Empty</td>
                         <td>
