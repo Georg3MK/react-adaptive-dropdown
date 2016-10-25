@@ -173,9 +173,6 @@ form.add-product .options-block {
   background: white;
   color: black;
 }
-.dropdown-simple {
-  position: inherit;
-}
 .dropdown-separate {
   margin: 2.25% 0 0 2.25%;
 }

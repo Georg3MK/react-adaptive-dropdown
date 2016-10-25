@@ -23,10 +23,10 @@ let DropdownSeparate = (props: any) => {
                                 el: any = e.target,
                                 dropHeight = el.offsetHeight * (items.length + 2)   // because of first li and 2em margin-top
 
-                            if(el.classList.contains('dropdown')) { el.classList.toggle('open') }
+                            if(el.classList.contains('dropdown-separate')) { el.classList.toggle('open') }
                             else { el.parentNode.classList.toggle('open') }
 
-                            changeDirection(id, null, offset, dropHeight, setDirection)
+                            changeDirection(id, null, null, offset, dropHeight, setDirection)
                         }
                     }>
                     <li>{items[currentItem]}</li>

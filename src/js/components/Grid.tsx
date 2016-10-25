@@ -1,11 +1,10 @@
 import * as React from 'react';
 import DropdownBox from '../containers/DropdownBox';
-import DropdownSimple from './Dropdown';
 
 export default class Grid extends React.Component<any, any> {
 
     render() {
-        const {lists, changeDirection} = this.props
+        const {changeDirection} = this.props
 
         return (
             <div>
@@ -22,7 +21,9 @@ export default class Grid extends React.Component<any, any> {
                     <tbody>
                     <tr>
                         <td>
-                            {<DropdownSimple items={lists[0]}/>}
+                            {<DropdownBox id={1}
+                                             type="simple"
+                                             changeDirection={changeDirection}/>}
                         </td>
                         <td>
                             {<DropdownBox id={3}
@@ -43,7 +44,9 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     <tr>
                         <td>
-                            {<DropdownSimple items={lists[1]}/>}
+                            {<DropdownBox id={2}
+                                          type="simple"
+                                          changeDirection={changeDirection}/>}
                         </td>
                         <td>
                             {<DropdownBox id={4}
@@ -63,7 +66,9 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     <tr>
                         <td>
-                            {<DropdownSimple items={lists[2]}/>}
+                            {<DropdownBox id={0}
+                                          type="simple"
+                                          changeDirection={changeDirection}/>}
                         </td>
                         <td>
                             {<DropdownBox id={5}

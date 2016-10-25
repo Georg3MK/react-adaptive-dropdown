@@ -22,7 +22,7 @@ let Dropdown = (props: any) => {
                    if(el.classList.contains('dropdown')) { el.classList.toggle('open') }
                    else { el.parentNode.classList.toggle('open') }
 
-                   changeDirection(id, el, null, dropHeight, setDirection)
+                   changeDirection(id, el, null, null, dropHeight, setDirection)
                }
            }>
             <li>{items[currentItem]}</li>

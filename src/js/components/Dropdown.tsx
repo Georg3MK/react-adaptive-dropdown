@@ -1,63 +1,47 @@
 import * as React from 'react';
 
-export default class DropdownSimple extends React.Component<any, any> {
-    constructor(props: any, context: any ){
-        super(props, context)
-        this.state = {
-            currentItem: props.items[0]
-        }
-    }
+let DropdownSimple = (props: any) => {
 
-    render() {
-        const { items } = this.props
-        let itemCount = 0,
-            liHeight = 2
+    const { dropdown, clickItem, setDirection, changeDirection } = props
+    const id = dropdown.id,
+        items = dropdown.items,
+        currentItem = dropdown.defaultItem,
+        direction = dropdown.dropDirection
 
-        return (
-            <label className="dropdown-simple" ref={"dropdown"} style={{display: 'none'}}> // hidden because no styles
-                <input type="checkbox"/>
-                <ul className="dropdown-list">
-                    <li ref={"li"}>{this.state.currentItem}</li>
-                    {items.map((item: any) =>
-                        <li key={item + itemCount++}
-                            onClick={
-                                () => {this.setState({currentItem: item})}
-                            }
-                            style={
-                            (this.state.direction === 'top') ?
-                                {bottom: liHeight * itemCount + 'em'} :
-                                {top: liHeight * itemCount + 'em'}
-                        }>
-                            {item}
-                        </li>)}
-                </ul>
-            </label>
-        )
-    }
+    let itemCount = 0,
+        liHeight = 2
 
-    componentDidMount(){
-        let elem: any = this.refs['li'],
-            dropdownHeight: number = elem.offsetHeight * (this.props.items.length + 1)
+    return (
+        <ul className="dropdown-simple"
+            onClick={
+           (e) => {
+               e.preventDefault()
+               let el: any = e.target,
+                   dropHeight = el.offsetHeight * (items.length + 1)
 
-        function findOffset(fromElement: any, toElement:string, dropdownHeight:number) {
-            let el = fromElement,
-                elOffset = fromElement,
-                offset = elOffset.offsetTop
+               if(el.classList.contains('dropdown-simple')) { el.classList.toggle('open') }
+               else { el.parentNode.classList.toggle('open') }
 
-            while (!el.parentNode.classList.contains(toElement)) {
-                el = el.parentNode
-                if(el.offsetParent !== elOffset) {
-                    offset += el.offsetTop
-                    elOffset = el.offsetParent
+               changeDirection(id, el, 'grid', null, dropHeight, setDirection)
+           }
+       }>
+            <li>{items[currentItem]}</li>
+            {items.map((item: any) =>
+                <li onClick={
+                    (function(id, item, click){
+                            return () => click(id, item)
+                        })(id, itemCount, clickItem)
                 }
-            }
-            el = el.parentNode.offsetHeight
-            offset = el - offset
-
-            if(offset >= dropdownHeight) { return 'bottom' }
-            else { return 'top' }
-        }
-
-        this.setState({direction: findOffset(this.refs['dropdown'], 'grid', dropdownHeight)})
-    }
+                    key={item + itemCount++}
+                    style={
+                    (direction === 'top') ?
+                        {bottom: liHeight * itemCount + 'em'} :
+                        {top: liHeight * itemCount + 'em'}
+            }>
+                    {item}
+                </li>)}
+        </ul>
+    )
 }
+
+export default DropdownSimple
