@@ -5,7 +5,7 @@ import DropdownSimple from './Dropdown';
 export default class Grid extends React.Component<any, any> {
 
     render() {
-        const lists = this.props.lists
+        const {lists, changeDirection} = this.props
 
         return (
             <div>
@@ -25,7 +25,9 @@ export default class Grid extends React.Component<any, any> {
                             {<DropdownSimple items={lists[0]}/>}
                         </td>
                         <td>
-                            {<DropdownBox id={3} type="joint" />}
+                            {<DropdownBox id={3}
+                                          type="joint"
+                                          changeDirection={changeDirection}/>}
                         </td>
                         <td ref={'separate-0'}>Empty</td>
                         <td>
@@ -44,7 +46,9 @@ export default class Grid extends React.Component<any, any> {
                             {<DropdownSimple items={lists[1]}/>}
                         </td>
                         <td>
-                            {<DropdownBox id={4} type="joint" />}
+                            {<DropdownBox id={4}
+                                          type="joint"
+                                          changeDirection={changeDirection} />}
                         </td>
                         <td ref={'separate-1'}>Empty</td>
                         <td>
@@ -62,7 +66,9 @@ export default class Grid extends React.Component<any, any> {
                             {<DropdownSimple items={lists[2]}/>}
                         </td>
                         <td>
-                            {<DropdownBox id={5} type="joint" />}
+                            {<DropdownBox id={5}
+                                          type="joint"
+                                          changeDirection={changeDirection} />}
                         </td>
                         <td ref={'separate-2'}>Empty</td>
                         <td>
@@ -77,9 +83,9 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     </tbody>
                 </table>
-                <DropdownBox id={0} type="separate" />
-                <DropdownBox id={1} type="separate" />
-                <DropdownBox id={2} type="separate" />
+                <DropdownBox id={0} type="separate" changeDirection={changeDirection} />
+                <DropdownBox id={1} type="separate" changeDirection={changeDirection} />
+                <DropdownBox id={2} type="separate" changeDirection={changeDirection} />
             </div>
         )
     }

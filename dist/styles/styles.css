@@ -114,46 +114,31 @@ form.add-product .options-block {
 .dropdown-separate {
   position: absolute;
   width: 17%;
+  height: 2em;
   margin: -1em 0 0 0;
   font-size: 1.2em;
-}
-.dropdown > input[type='checkbox'],
-.dropdown-simple > input[type='checkbox'],
-.dropdown-separate > input[type='checkbox'] {
-  position: absolute;
-  left: -9999px;
-}
-.dropdown > input[type='checkbox'] ~ .dropdown-list,
-.dropdown-simple > input[type='checkbox'] ~ .dropdown-list,
-.dropdown-separate > input[type='checkbox'] ~ .dropdown-list {
   overflow: hidden;
 }
-.dropdown > input[type='checkbox']:checked ~ .dropdown-list,
-.dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list,
-.dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list {
-  overflow: visible;
-  z-index: 999;
-}
-.dropdown > input[type='checkbox']:checked ~ .dropdown-list li:hover,
-.dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list li:hover,
-.dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list li:hover {
-  background: rgba(0, 0, 255, 0.75);
-  color: white;
-}
-.dropdown > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover,
-.dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover,
-.dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list li:first-child:hover {
+.dropdown li,
+.dropdown-simple li,
+.dropdown-separate li {
+  position: absolute;
+  left: 0;
+  width: 90%;
+  height: 2em;
+  line-height: 2em;
+  padding: 0 5%;
   background: white;
-  color: black;
+  border: 1px solid rgba(0, 0, 255, 0.5);
 }
-.dropdown > input[type='checkbox']:checked ~ .dropdown-list:after,
-.dropdown-simple > input[type='checkbox']:checked ~ .dropdown-list:after,
-.dropdown-separate > input[type='checkbox']:checked ~ .dropdown-list:after {
-  content: "▲";
+.dropdown li:first-child,
+.dropdown-simple li:first-child,
+.dropdown-separate li:first-child {
+  border: 1px solid rgba(0, 0, 0, 0.25);
 }
-.dropdown > input[type='checkbox'] ~ .dropdown-list:after,
-.dropdown-simple > input[type='checkbox'] ~ .dropdown-list:after,
-.dropdown-separate > input[type='checkbox'] ~ .dropdown-list:after {
+.dropdown:after,
+.dropdown-simple:after,
+.dropdown-separate:after {
   content: "▼";
   position: absolute;
   top: 0;
@@ -165,29 +150,28 @@ form.add-product .options-block {
   -o-transform: scale(0.5, 0.5);
   transform: scale(0.5, 0.5);
 }
-.dropdown .dropdown-list,
-.dropdown-simple .dropdown-list,
-.dropdown-separate .dropdown-list {
-  position: relative;
-  height: 2em;
-  overflow: hidden;
+.dropdown.open:after,
+.dropdown-simple.open:after,
+.dropdown-separate.open:after {
+  content: "▲";
 }
-.dropdown .dropdown-list li,
-.dropdown-simple .dropdown-list li,
-.dropdown-separate .dropdown-list li {
-  position: absolute;
-  left: 0;
-  width: 90%;
-  height: 2em;
-  line-height: 2em;
-  padding: 0 5%;
+.dropdown.open,
+.dropdown-simple.open,
+.dropdown-separate.open {
+  overflow: visible;
+  z-index: 999;
+}
+.dropdown.open li:hover,
+.dropdown-simple.open li:hover,
+.dropdown-separate.open li:hover {
+  background: rgba(0, 0, 255, 0.75);
+  color: white;
+}
+.dropdown.open li:first-child:hover,
+.dropdown-simple.open li:first-child:hover,
+.dropdown-separate.open li:first-child:hover {
   background: white;
-  border: 1px solid rgba(0, 0, 255, 0.5);
-}
-.dropdown .dropdown-list li:first-child,
-.dropdown-simple .dropdown-list li:first-child,
-.dropdown-separate .dropdown-list li:first-child {
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  color: black;
 }
 .dropdown-simple {
   position: inherit;

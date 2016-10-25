@@ -114,53 +114,53 @@ form.add-product {
 .dropdown-separate {
   position:absolute;
   width:17%;
+  height: 2em;
   margin:-1em 0 0 0;
   font-size: 1.2em;
-  >input[type='checkbox']{
-    position: absolute;
-    left:-9999px;
-  }
-  >input[type='checkbox']~.dropdown-list { overflow:hidden }
-  >input[type='checkbox']:checked~.dropdown-list{
-    overflow:visible;
-    z-index:999;
-    li:hover {
-      background: rgba(0,0,255,0.75);
-      color: white;
-    }
-    li:first-child:hover {
-      background: white;
-      color: black
-    }
-  }
-  >input[type='checkbox']:checked~.dropdown-list:after{ content: "▲" }
-  >input[type='checkbox']~.dropdown-list:after {
-    content: "▼";
-    position: absolute;
-    top: 0;
-    right: 0.25em;
+  overflow:hidden;
+  li{
+    position:absolute;
+    left:0;
+    width:90%;
+    height:2em;
     line-height:2em;
-    .scale(0.5; 0.5)
+    padding:0 5%;
+    background: white;
+    border: 1px solid rgba(0,0,255,0.5);
   }
-  .dropdown-list {
-    position: relative;
-    height: 2em;
-    overflow:hidden;
-    li{
-      position:absolute;
-      left:0;
-      width:90%;
-      height:2em;
-      line-height:2em;
-      padding:0 5%;
-      background: white;
-      border: 1px solid rgba(0,0,255,0.5);
-    }
-    li:first-child {
-      border: 1px solid rgba(0,0,0,0.25);
-    }
+  li:first-child {
+    border: 1px solid rgba(0,0,0,0.25);
   }
 }
+.dropdown:after,
+.dropdown-simple:after,
+.dropdown-separate:after {
+  content: "▼";
+  position: absolute;
+  top: 0;
+  right: 0.25em;
+  line-height:2em;
+  .scale(0.5; 0.5)
+}
+.dropdown.open:after,
+.dropdown-simple.open:after,
+.dropdown-separate.open:after { content: "▲" }
+
+.dropdown.open,
+.dropdown-simple.open,
+.dropdown-separate.open {
+  overflow:visible;
+  z-index:999;
+  li:hover {
+    background: rgba(0,0,255,0.75);
+    color: white;
+  }
+  li:first-child:hover {
+    background: white;
+    color: black
+  }
+}
+
 .dropdown-simple {
   position:inherit;
 }

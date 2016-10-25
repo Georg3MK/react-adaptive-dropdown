@@ -5,16 +5,19 @@ import Grid from '../components/Grid'
 
 
 const mapStateToProps = (state: any) => ({
-    lists: state.grids.lists
+    lists: state.grids.lists,
+    changeDirection: state.grids.actions.changeDirection
 }),
     mapDispatchToProps =  ({
         setPosition: setPosition
     }),
     connectTo: any = connect   // to avoid typescript types confrontation
 
-let GridBox = ({lists, setPosition}:any) => {
+let GridBox = ({lists, changeDirection, setPosition}:any) => {
     return (
-        <Grid lists={lists} setPosition={setPosition}/>
+        <Grid lists={lists}
+              setPosition={setPosition}
+              changeDirection={changeDirection} />
     )
 }
 
