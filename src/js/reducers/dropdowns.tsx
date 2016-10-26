@@ -1,39 +1,28 @@
 const defaultDropdowns = [
     {
-        id: 0,
-        type: 'separated',
-        items: ['lamborghini', 'ferrari', 'porsche', 'aston martin', 'maserati'],
-        defaultItem: 0
-    },{
-        id: 1,
-        type: 'separated',
-        items: ['audi', 'BMW', 'mercedes', 'lexus', 'infinity'],
-        defaultItem: 0
-    },{
-        id: 2,
-        type: 'separated',
-        items: ['volkswagen', 'skoda', 'toyota', 'volvo', 'ford', 'nissan'],
-        defaultItem: 0
-    },{
-        id: 3,
+        id: 'british',
         type: 'joint',
-        items: ['volkswagen', 'golf', 'passat', 'phaeton', 'tiguan', 'tuareg'],
+        items: ['Rover', 'MINI', 'Land Rover', 'Aston Martin', 'Rolls Royce', 'Bentley'],
+        defaultItem: 1
+    },{
+        id: 'russian',
+        type: 'joint',
+        items: ['Lada', 'KAMAZ', 'UAZ', 'T-90'],
         defaultItem: 0
     },{
-        id: 4,
-        type: 'joint',
-        items: ['skoda', 'fabia', 'octavia', 'superb', 'yeti'],
-        defaultItem: 0
-    },{
-        id: 5,
-        type: 'joint',
-        items: ['BMW', '1-series', '3-series', '5-series', '7-series', 'X5'],
+        id: 'germans',
+        type: 'separate',
+        items: ['BMW', 'Audi', 'Mercedes', 'Volkswagen', 'Opel'],
         defaultItem: 0
     }
 ]
 
 const dropdown = (state: any, action: any) => {
     switch (action.type) {
+        case 'ADD_DROPDOWN':
+            state.push(action.dropdown)
+            return state
+
         case 'SET_DROPDOWN_VALUE':
             if(state.id === action.dropId) {
                 return Object.assign({}, state, {
@@ -60,25 +49,15 @@ const dropdown = (state: any, action: any) => {
     }
 }
 
-const dropdowns = (state = defaultDropdowns, action: any) => {
+const dropdowns = (state:any = defaultDropdowns, action: any) => {
     switch (action.type) {
-        case 'SET_DROPDOWN_VALUE':{
-            return state.map(
-                dd => dropdown(dd, action)
-            )
-        }
-        case 'SET_DROPDOWN_DIRECTION':{
-            return state.map(
-                dd => dropdown(dd, action)
-            )
-        }
-        case 'SET_DROPDOWN_POSITION':{
-            return state.map(
-                dd => dropdown(dd, action)
-            )
+        case 'ADD_DROPDOWN':{
+            return dropdown(state, action)
         }
         default:
-            return state
+            return state.map(
+                (dd:any) => dropdown(dd, action)
+            )
     }
 }
 

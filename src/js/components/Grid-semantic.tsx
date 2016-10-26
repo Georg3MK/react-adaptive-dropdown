@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Select from '../containers/Select';
+import Select from '../containers/Select-semantic';
 
 export default class Grid extends React.Component<any, any> {
 
@@ -21,20 +21,22 @@ export default class Grid extends React.Component<any, any> {
                     <tbody>
                     <tr>
                         <td>
-                            <Select id={1}
-                                    type="simple"
+                            <Select id="italians"
+                                    type="joint"
                                     changeDirection={changeDirection}>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option>Alpha Romeo</option>
+                                <option>Fiat</option>
+                                <option>Lancia</option>
+                                <option>Ferrari</option>
+                                <option>Lamborghini</option>
                             </Select>
                         </td>
                         <td>
-                            <Select id={3}
-                                    type="joint"
-                                    changeDirection={changeDirection} />
+                            British
                         </td>
-                        <td ref={'separate-0'}>Empty</td>
+                        <td>
+                            Russian
+                        </td>
                         <td>
                             <select>
                                 <option>volkswagen</option>
@@ -47,17 +49,13 @@ export default class Grid extends React.Component<any, any> {
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <Select id={2}
-                                    type="simple"
-                                    changeDirection={changeDirection} />
+                        <td ref={'separate-japan'}>
+                            Japans
                         </td>
-                        <td>
-                            <Select id={4}
-                                    type="joint"
-                                    changeDirection={changeDirection} />
+                        <td ref={'separate-korean'}>
+                            Koreans
                         </td>
-                        <td ref={'separate-1'}>Empty</td>
+                        <td>Empty</td>
                         <td>
                             <select>
                                 <option>audi</option>
@@ -69,17 +67,9 @@ export default class Grid extends React.Component<any, any> {
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <Select id={0}
-                                    type="simple"
-                                    changeDirection={changeDirection} />
-                        </td>
-                        <td>
-                            <Select id={5}
-                                    type="joint"
-                                    changeDirection={changeDirection} />
-                        </td>
-                        <td ref={'separate-2'}>Empty</td>
+                        <td>Empty</td>
+                        <td>Empty</td>
+                        <td>Empty</td>
                         <td>
                             <select>
                                 <option>lamborghini</option>
@@ -92,16 +82,26 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     </tbody>
                 </table>
-                <Select id={0} type="separate" changeDirection={changeDirection} />
-                <Select id={1} type="separate" changeDirection={changeDirection} />
-                <Select id={2} type="separate" changeDirection={changeDirection} />
+                <Select id="japan"
+                        type="separate"
+                        changeDirection={changeDirection}>
+                    <option>Toyota</option>
+                    <option>Nissan</option>
+                </Select>
+                <Select id="korean"
+                        type="separate"
+                        changeDirection={changeDirection}>
+                    <option>Kia</option>
+                    <option>Hyundai</option>
+                    <option>Great Wall</option>
+                </Select>
             </div>
         )
     }
 
     componentDidMount() {
         function findPlace(refs: any, setPosition: any): void {
-            let ref: string, id: number
+            let ref: string, id: string
 
             function findOffset(el: any) {
                 let offsetTop: number = el.offsetTop,
@@ -119,12 +119,22 @@ export default class Grid extends React.Component<any, any> {
 
             for (ref in refs) {
                 if (refs.hasOwnProperty(ref) && ref.toString().match(/^separate/i)) {
-                    id = Number(ref.match(/\d+$/)[0])
+                    id = ref.match(/\w+$/i)[0].toString()
                     setPosition(id, findOffset(refs[ref]))
                 }
             }
         }
 
+        console.log('setPos')
         findPlace(this.refs, this.props.setPosition)
     }
 }
+
+/*
+
+* <Select id="russian"
+ changeDirection={changeDirection} />
+
+ <Select id="british"
+ changeDirection={changeDirection} />
+* */

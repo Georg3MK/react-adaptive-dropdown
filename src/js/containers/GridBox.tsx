@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
 import { setPosition } from '../actions'
-import Grid from '../components/Grid'
+import Grid from '../components/Grid-semantic'
+//import Grid from '../components/Grid'
 
 
 const mapStateToProps = (state: any) => ({

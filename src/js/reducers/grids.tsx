@@ -22,13 +22,11 @@ const actions = {
                             el = el.parentNode
                             if(el.offsetParent !== elOffset) {
                                 offset += el.offsetTop
-                                console.log(offset, el, el.offsetParent)
                                 elOffset = el.offsetParent
                             }
                         }
                         el = el.parentNode.offsetHeight
                         offset = el - offset
-                        console.log(el, dropHeight, offset, toElem)
                     }
                     else {
                         offset = el.offsetTop
@@ -63,13 +61,6 @@ const actions = {
 
 const dropdown = (state: any, action: any) => {
     switch (action.type) {
-        case 'ADD_DROPDOWN':
-            return {
-                id: action.id,
-                type: action.type,
-                items: action.items,
-                defaultItem: action.defaultItem
-            }
         default:
             return state
     }
@@ -77,12 +68,6 @@ const dropdown = (state: any, action: any) => {
 
 const grids = (state:any = {actions}, action: any) => {
     switch (action.type) {
-        case 'ADD_DROPDOWN':
-            return [
-                Object.assign({}, state, {
-                    dropDirection: action.direction
-                })
-            ]
         default:
             return state
     }

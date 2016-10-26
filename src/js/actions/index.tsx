@@ -1,8 +1,6 @@
-let nextDrop = 0
-
-export const addDropdown = (dropdown:any) => ({
+export const addDropdown = (dropId: string, dropdown:any) => ({
     type: 'ADD_DROPDOWN',
-    id: nextDrop++,
+    dropId,
     dropdown
 })
 
