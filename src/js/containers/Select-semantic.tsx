@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
-import { addDropdown, setValue, setDropDirection } from '../actions'
-import DropdownSimple from '../components/Dropdown';
+import { addDropdown, setValue, setDropDirection, addToSmartFrame } from '../actions'
+import DropdownSimple from '../components/Dropdown'
 import DropdownJoint from '../components/Dropdown-2'
-import DropdownSeparate from '../components/Dropdown-3'
 
 const mapStateToProps = (state: any, props: any) => ({
     dropdown: ((drops) => {
@@ -18,9 +17,10 @@ const mapStateToProps = (state: any, props: any) => ({
     props: props
 }),
     mapDispatchToProps =  ({
-        onItemClick: setValue,
         addDropdown: addDropdown,
-        setDropDirection: setDropDirection
+        onItemClick: setValue,
+        setDropDirection: setDropDirection,
+        addToSmartFrame: addToSmartFrame
     }),
     connectTo: any = connect
 
@@ -29,6 +29,7 @@ let Select = ({
         addDropdown,
         onItemClick,
         setDropDirection,
+        addToSmartFrame,
         changeDirection,
         props
     }: any) => {
@@ -54,12 +55,13 @@ let Select = ({
 
     switch (dropdown.type) {
         case 'separate':
-            return (
-                <DropdownSeparate dropdown={dropdown}
-                                  clickItem={onItemClick}
-                                  setDirection={setDropDirection}
-                                  changeDirection={changeDirection} />
-            )
+            addToSmartFrame(dropdown.id, 'dropdownSeparate', {
+                dropdown: dropdown,
+                clickItem: onItemClick,
+                setDirection: setDropDirection,
+                changeDirection: changeDirection
+            })
+            return null
         case 'joint':
             return (
                 <DropdownJoint dropdown={dropdown}

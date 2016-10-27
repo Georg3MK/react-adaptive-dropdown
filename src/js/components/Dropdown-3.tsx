@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 let DropdownSeparate = (props: any) => {
-    
     if(props.dropdown.position) {
         const { dropdown, clickItem, setDirection, changeDirection } = props
         const id = dropdown.id,

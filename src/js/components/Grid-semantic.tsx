@@ -21,15 +21,7 @@ export default class Grid extends React.Component<any, any> {
                     <tbody>
                     <tr>
                         <td>
-                            <Select id="italians"
-                                    type="joint"
-                                    changeDirection={changeDirection}>
-                                <option>Alpha Romeo</option>
-                                <option>Fiat</option>
-                                <option>Lancia</option>
-                                <option>Ferrari</option>
-                                <option>Lamborghini</option>
-                            </Select>
+                            Italians
                         </td>
                         <td>
                             British
@@ -50,12 +42,29 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     <tr>
                         <td ref={'separate-japan'}>
-                            Japans
+                            <Select id="japan"
+                                    type="separate"
+                                    changeDirection={changeDirection}>
+                                <option>Toyota</option>
+                                <option>Lexus</option>
+                                <option>Nissan</option>
+                                <option>Honda</option>
+                                <option>Acura</option>
+                            </Select>
                         </td>
                         <td ref={'separate-korean'}>
-                            Koreans
+                            <Select id="korean"
+                                    type="separate"
+                                    changeDirection={changeDirection}>
+                                <option>KIA</option>
+                                <option>Hyundai</option>
+                                <option>Genesis</option>
+                            </Select>
                         </td>
-                        <td>Empty</td>
+                        <td ref={'separate-german'}>
+                            <Select id="german"
+                                    changeDirection={changeDirection} />
+                        </td>
                         <td>
                             <select>
                                 <option>audi</option>
@@ -82,19 +91,6 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     </tbody>
                 </table>
-                <Select id="japan"
-                        type="separate"
-                        changeDirection={changeDirection}>
-                    <option>Toyota</option>
-                    <option>Nissan</option>
-                </Select>
-                <Select id="korean"
-                        type="separate"
-                        changeDirection={changeDirection}>
-                    <option>Kia</option>
-                    <option>Hyundai</option>
-                    <option>Great Wall</option>
-                </Select>
             </div>
         )
     }
@@ -124,17 +120,25 @@ export default class Grid extends React.Component<any, any> {
                 }
             }
         }
-
-        console.log('setPos')
         findPlace(this.refs, this.props.setPosition)
     }
 }
 
 /*
-
-* <Select id="russian"
- changeDirection={changeDirection} />
+ <Select id="italians"
+ type="joint"
+ changeDirection={changeDirection}>
+ <option>Alpha Romeo</option>
+ <option>Fiat</option>
+ <option>Lancia</option>
+ <option>Ferrari</option>
+ <option>Lamborghini</option>
+ </Select>
 
  <Select id="british"
  changeDirection={changeDirection} />
-* */
+
+ <Select id="russian"
+ changeDirection={changeDirection} />
+
+ */

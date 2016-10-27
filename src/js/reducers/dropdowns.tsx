@@ -10,7 +10,7 @@ const defaultDropdowns = [
         items: ['Lada', 'KAMAZ', 'UAZ', 'T-90'],
         defaultItem: 0
     },{
-        id: 'germans',
+        id: 'german',
         type: 'separate',
         items: ['BMW', 'Audi', 'Mercedes', 'Volkswagen', 'Opel'],
         defaultItem: 0
