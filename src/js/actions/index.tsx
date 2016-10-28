@@ -22,9 +22,7 @@ export const setDropDirection = (dropId:number, direction:string) => ({
     direction
 })
 
-export const addToSmartFrame = (elId:string, elType:string, props:any) => ({
+export const addToSmartFrame = (smartElem: any) => ({
     type: 'ADD_TO_SMARTFRAME',
-    elId,
-    elType,
-    props
+    smartElem
 })

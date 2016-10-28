@@ -1,87 +1,50 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
-import { addDropdown, setValue, setDropDirection, addToSmartFrame } from '../actions'
-import DropdownSimple from '../components/Dropdown'
-import DropdownJoint from '../components/Dropdown-2'
+import { addDropdown, addToSmartFrame } from '../actions'
+import DropdownSeparate from './DropdownSeparate'
 
 const mapStateToProps = (state: any, props: any) => ({
     dropdown: ((drops) => {
-        let dd: any = undefined
+        let dropdown: any = undefined
         drops.map(
-            (dropdown: any): void => {
-                if(dropdown.id === props.id){ dd = dropdown }
+            (dd: any): void => {
+                if(dd.id === props.id){ dropdown = dd }
             }
         )
-        return dd
-    })(state.dropdowns),
+        return dropdown
+    })(state.dropdowns.drops),
     props: props
 }),
     mapDispatchToProps =  ({
         addDropdown: addDropdown,
-        onItemClick: setValue,
-        setDropDirection: setDropDirection,
         addToSmartFrame: addToSmartFrame
     }),
-    connectTo: any = connect
-
-let Select = ({
-        dropdown,
-        addDropdown,
-        onItemClick,
-        setDropDirection,
-        addToSmartFrame,
-        changeDirection,
-        props
-    }: any) => {
-
-    if(!dropdown && props.children) {
-        let options: any = props.children
-        var dropdown: any = {
+    mergeProps = (stateProps:any, dispatchProps:any) => {
+        
+        let dropdown:any = stateProps.dropdown,
+            props:any = stateProps.props,
+            addDropdown:any = dispatchProps.addDropdown
+            
+        if(!dropdown && props.children) {
+            let options: any = props.children
+            dropdown = {
                 id: props.id,
                 items:[],
-                type: props.type
+                defaultItem:0
             }
-
-        options.map((option: any) => {
-            if(option.type === 'option') {
-                dropdown.items.push(option.props.children)
-                if(option.props.selected){ dropdown.defaultItem = dropdown.items.length - 1}
-            }
-        })
-
-        if(!dropdown.defaultItem) { dropdown.defaultItem = 0 }
-        addDropdown(dropdown.id, dropdown)
-    }
-
-    switch (dropdown.type) {
-        case 'separate':
-            addToSmartFrame(dropdown.id, 'dropdownSeparate', {
-                dropdown: dropdown,
-                clickItem: onItemClick,
-                setDirection: setDropDirection,
-                changeDirection: changeDirection
+            options.map((option: any) => {
+                if(option.type === 'option') {
+                    dropdown.items.push(option.props.children)
+                    if(option.props.selected){ dropdown.defaultItem = dropdown.items.length - 1}
+                }
             })
-            return null
-        case 'joint':
-            return (
-                <DropdownJoint dropdown={dropdown}
-                               clickItem={onItemClick}
-                               setDirection={setDropDirection}
-                               changeDirection={changeDirection}/>
-            )
-        case 'simple':
-            return (
-                <DropdownSimple dropdown={dropdown}
-                               clickItem={onItemClick}
-                               setDirection={setDropDirection}
-                               changeDirection={changeDirection}/>
-            )
-    }
-}
+            addDropdown(dropdown.id, dropdown)
+        }
 
-Select = connectTo(
-    mapStateToProps,
-    mapDispatchToProps
-)(Select)
+        return Object.assign({}, {dropdown}, dispatchProps)
+    },
+    connectTo: any = connect
+
+let Select:any = connectTo(mapStateToProps, mapDispatchToProps, mergeProps)(DropdownSeparate)
 
 export default Select

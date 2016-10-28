@@ -4,8 +4,6 @@ import Select from '../containers/Select-semantic';
 export default class Grid extends React.Component<any, any> {
 
     render() {
-        const {changeDirection} = this.props
-
         return (
             <div>
                 <h2>Grid-2: updated</h2>
@@ -20,8 +18,14 @@ export default class Grid extends React.Component<any, any> {
                     </thead>
                     <tbody>
                     <tr>
-                        <td>
-                            Italians
+                        <td ref={'separate-italian'}>
+                            <Select id="italian">
+                                <option>Alpha Romeo</option>
+                                <option>Fiat</option>
+                                <option>Lancia</option>
+                                <option>Ferrari</option>
+                                <option>Lamborghini</option>
+                            </Select>
                         </td>
                         <td>
                             British
@@ -42,9 +46,7 @@ export default class Grid extends React.Component<any, any> {
                     </tr>
                     <tr>
                         <td ref={'separate-japan'}>
-                            <Select id="japan"
-                                    type="separate"
-                                    changeDirection={changeDirection}>
+                            <Select id="japan">
                                 <option>Toyota</option>
                                 <option>Lexus</option>
                                 <option>Nissan</option>
@@ -52,18 +54,11 @@ export default class Grid extends React.Component<any, any> {
                                 <option>Acura</option>
                             </Select>
                         </td>
-                        <td ref={'separate-korean'}>
-                            <Select id="korean"
-                                    type="separate"
-                                    changeDirection={changeDirection}>
-                                <option>KIA</option>
-                                <option>Hyundai</option>
-                                <option>Genesis</option>
-                            </Select>
+                        <td>
+                            Korean
                         </td>
-                        <td ref={'separate-german'}>
-                            <Select id="german"
-                                    changeDirection={changeDirection} />
+                        <td>
+                            German
                         </td>
                         <td>
                             <select>
@@ -126,7 +121,6 @@ export default class Grid extends React.Component<any, any> {
 
 /*
  <Select id="italians"
- type="joint"
  changeDirection={changeDirection}>
  <option>Alpha Romeo</option>
  <option>Fiat</option>
@@ -140,5 +134,19 @@ export default class Grid extends React.Component<any, any> {
 
  <Select id="russian"
  changeDirection={changeDirection} />
+
+ <td ref={'separate-korean'}>
+ <Select id="korean"
+ changeDirection={changeDirection}>
+ <option>KIA</option>
+ <option>Hyundai</option>
+ <option>Genesis</option>
+ </Select>
+ </td>
+
+ <td ref={'separate-german'}>
+ <Select id="german"
+ changeDirection={changeDirection} />
+ </td>
 
  */

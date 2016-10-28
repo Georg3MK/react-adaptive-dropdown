@@ -1,30 +1,44 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import DropdownSeparate from '../components/Dropdown-3'
+import { setValue, setDropDirection } from '../actions'
+import Dropdown from '../components/Dropdown'
 
 const mapStateToProps = (state: any) => ({
-        elements: state.smartFrame
+        smartFrame: state.dropdowns.smartFrame,
+        dropdowns: state.dropdowns.drops,
+        changeDirection: state.dropdowns.actions.changeDirection
     }),
     mapDispatchToProps =  ({
-
+        onItemClick: setValue,
+        setDropDirection: setDropDirection
     }),
     connectTo: any = connect
 
 let SmartFrame = (props:any) => {
     let count: number = 0
+    
     return (
         <div className="smartFrame">
             {
-                props.elements.map((el: any) => {
+                props.smartFrame.map((el: any) => {
                     switch (el.type) {
-                        case 'dropdownSeparate':
-                            let {dropdown, clickItem, setDirection, changeDirection} = el.props
+                        case 'dropdown':
+                            let dropdown = ((drops) => {
+                                let drop:any = undefined
+                                    drops.map((dd:any) => {
+                                        if(dd.id === el.id) {
+                                            drop = dd
+                                        }
+                                    })
+                                return drop
+                            })(props.dropdowns)
+
                             return (
-                                <DropdownSeparate dropdown={dropdown}
-                                                  clickItem={clickItem}
-                                                  setDirection={setDirection}
-                                                  changeDirection={changeDirection}
-                                                  key={count++}
+                                <Dropdown dropdown={dropdown}
+                                        onItemClick={props.onItemClick}
+                                        setDropDirection={props.setDropDirection}
+                                        changeDirection={props.changeDirection}
+                                        key={count++}
                                 />
                             )
                     }
