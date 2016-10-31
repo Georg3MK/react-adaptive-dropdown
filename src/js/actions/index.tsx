@@ -4,6 +4,11 @@ export const addDropdown = (dropId: string, dropdown:any) => ({
     dropdown
 })
 
+export const addToSmartFrame = (smartElem: any) => ({
+    type: 'ADD_TO_SMARTFRAME',
+    smartElem
+})
+
 export const setValue = (dropId:number, valueId:number) => ({
     type: 'SET_DROPDOWN_VALUE',
     dropId,
@@ -22,7 +27,8 @@ export const setDropDirection = (dropId:number, direction:string) => ({
     direction
 })
 
-export const addToSmartFrame = (smartElem: any) => ({
-    type: 'ADD_TO_SMARTFRAME',
-    smartElem
+export const setVisibility = (dropId:number, visible:boolean) => ({
+    type: 'SET_DROPDOWN_VISIBILITY',
+    dropId,
+    visible
 })

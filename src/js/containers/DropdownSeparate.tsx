@@ -2,23 +2,34 @@ import * as React from 'react';
 
 let DropdownSeparate = (props: any) => {
 
-    if(props.dropdown.position) {
-        const { id, items, defaultItem, position } = props.dropdown
-        
-        return (
-            <ul className="dropdown-separate"
-                style={{top: position.top, left: position.left}}
-                onClick={
-                        (e) => {
-                            e.preventDefault()
-                            props.addToSmartFrame({id:id, type:'dropdown'})
+    const { id, items, defaultItem, visible } = props.dropdown
+    const { setVisibility, setPosition, setDirection, changeDirection } = props
+
+    return (
+        <ul className={'dropdown ' + (visible ? 'open' : '')}
+            onClick={
+                    (e) => {
+                        e.preventDefault()
+                        let el:any = e.target,
+                            top: number = el.offsetTop,
+                            left: number = el.offsetLeft,
+                            width: number = el.offsetWidth,
+                            dropHeight = el.offsetHeight * (items.length + 1)
+
+                        while (el.offsetParent !== document.body) {
+                            el = el.offsetParent
+                            top += el.offsetTop
+                            left += el.offsetLeft
                         }
-                    }>
-                <li>{items[defaultItem]}</li>
-            </ul>
-        )
-    }
-    else { return null }
+
+                        setPosition(id, {top: top, left: left, width: width})
+                        setVisibility(id, (visible ? false : true))
+                        changeDirection(id, top, dropHeight, setDirection)
+                    }
+                }>
+            <li>{items[defaultItem]}</li>
+        </ul>
+    )
 }
 
 export default DropdownSeparate

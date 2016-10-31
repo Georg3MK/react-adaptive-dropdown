@@ -1,16 +1,15 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { setValue, setDropDirection } from '../actions'
+import { setValue, setVisibility } from '../actions'
 import Dropdown from '../components/Dropdown'
 
 const mapStateToProps = (state: any) => ({
         smartFrame: state.dropdowns.smartFrame,
-        dropdowns: state.dropdowns.drops,
-        changeDirection: state.dropdowns.actions.changeDirection
+        dropdowns: state.dropdowns.drops
     }),
     mapDispatchToProps =  ({
         onItemClick: setValue,
-        setDropDirection: setDropDirection
+        setVisibility: setVisibility
     }),
     connectTo: any = connect
 
@@ -36,8 +35,7 @@ let SmartFrame = (props:any) => {
                             return (
                                 <Dropdown dropdown={dropdown}
                                         onItemClick={props.onItemClick}
-                                        setDropDirection={props.setDropDirection}
-                                        changeDirection={props.changeDirection}
+                                        setVisibility={props.setVisibility}
                                         key={count++}
                                 />
                             )

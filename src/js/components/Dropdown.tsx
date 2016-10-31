@@ -1,45 +1,36 @@
 import * as React from 'react';
 
 let DropdownSeparate = (props: any) => {
-
+    
     if(props.dropdown.position) {
-        const { dropdown, onItemClick, setDropDirection, changeDirection } = props
-        const id = dropdown.id,
-            items = dropdown.items,
-            currentItem = dropdown.defaultItem,
-            pos = dropdown.position,
-            direction = dropdown.dropDirection
+        const { onItemClick, setVisibility } = props
+        const {id, items, position, dropDirection, visible} = props.dropdown
 
         let itemCount = 0,
             liHeight = 2
 
         return (
-                <ul className="dropdown-separate open"
-                    style={{top: pos.top, left: pos.left}}
+                <ul className={'dropdown-separate ' + (visible ? 'open' : '')}
+                    style={{top: position.top, left: position.left, width: position.width}}
                     onClick={
                         (e) => {
                             e.preventDefault()
-                            let offset: any = pos.top,
-                                el: any = e.target,
-                                dropHeight = el.offsetHeight * (items.length + 2)   // because of first li and 2em margin-top
-
-                            if(el.classList.contains('dropdown-separate')) { el.classList.toggle('open') }
-                            else { el.parentNode.classList.toggle('open') }
-
-                            changeDirection(id, null, null, offset, dropHeight, setDropDirection)
+                            setVisibility(id, false)
                         }
                     }>
-                    <li style={{opacity:0}}>{items[currentItem]}</li>
                     {items.map((item: any) =>
                         <li onClick={
                                 (function(id, item, click){
-                                    return () => click(id, item)
+                                    return (e: any) => {
+                                        e.preventDefault()
+                                        click(id, item)
+                                    }
                                 })(id, itemCount, onItemClick)
                             }
-                            key={item + itemCount++}
-                            style={(direction === 'top') ?
-                                {bottom: liHeight * itemCount + 'em'} :
-                                {top: liHeight * itemCount + 'em'}}>
+                            style={(dropDirection === 'top') ?
+                                {bottom: liHeight * itemCount + 2 + 'em'} :
+                                {top: liHeight * itemCount + 'em'}}
+                            key={item + itemCount++}>
                             {item}
                         </li>)}
                 </ul>

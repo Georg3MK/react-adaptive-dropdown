@@ -1,23 +1,6 @@
-const drops = [
-        {
-            id: 'british',
-            items: ['Rover', 'MINI', 'Land Rover', 'Aston Martin', 'Rolls Royce', 'Bentley'],
-            defaultItem: 1
-        },{
-            id: 'russian',
-            items: ['Lada', 'KAMAZ', 'UAZ', 'T-90'],
-            defaultItem: 0
-        },{
-            id: 'german',
-            items: ['BMW', 'Audi', 'Mercedes', 'Volkswagen', 'Opel'],
-            defaultItem: 0
-        }
-    ],
-    actions = {
+const actions = {
         changeDirection:(
             id: number,
-            elem: any,
-            toElem: string,
             offset: number,
             dropHeight: number,
             setDirection: any
@@ -25,37 +8,9 @@ const drops = [
 
             let timer: any = null
 
-            function findOffset(elem: any, dropHeight: number, offset: any, toElem: string) {
-
-                if(elem) {
-                    var el = elem, offset
-
-                    if(toElem) {
-                        var elOffset = el,
-                            offset = elOffset.offsetTop
-
-                        while (!el.parentNode.classList.contains(toElem)) {
-                            el = el.parentNode
-                            if(el.offsetParent !== elOffset) {
-                                offset += el.offsetTop
-                                elOffset = el.offsetParent
-                            }
-                        }
-                        el = el.parentNode.offsetHeight
-                        offset = el - offset
-                    }
-                    else {
-                        offset = el.offsetTop
-                        while (el.offsetParent !== document.body) {
-                            el = el.offsetParent
-                            offset += el.offsetTop
-                        }
-                        offset = document.documentElement.clientHeight - (offset - window.pageYOffset)
-                    }
-                }
-                else {
-                    offset = document.documentElement.clientHeight - (offset - window.pageYOffset)
-                }
+            function findOffset(dropHeight: number, offset: any) {
+                
+                offset = document.documentElement.clientHeight - (offset - window.pageYOffset)
 
                 if(offset >= dropHeight) { return 'bottom' }
                 else { return 'top' }
@@ -66,12 +21,12 @@ const drops = [
                     if(timer) { clearTimeout(timer) }
                     timer = setTimeout(
                         () => {
-                            setDirection(id, findOffset(elem, dropHeight, offset, toElem))
+                            setDirection(id, findOffset(dropHeight, offset))
                         }
                         ,300)
                 },false)
 
-            setDirection(id, findOffset(elem, dropHeight, offset, toElem))
+            setDirection(id, findOffset(dropHeight, offset))
         }
     }
 
@@ -80,8 +35,6 @@ const dropdown = (state: any, action: any) => {
         case 'ADD_DROPDOWN':
             let drop:any = action.dropdown,
                 dropUpdated: boolean = false
-
-            console.log(state.drops)
 
             if(state.drops.length){
                 state.drops = state.drops.map(
@@ -136,12 +89,20 @@ const dropdown = (state: any, action: any) => {
                 })
             }
             else { return state }
+
+        case 'SET_DROPDOWN_VISIBILITY':
+            if(state.id === action.dropId) {
+                return Object.assign({}, state, {
+                    visible: action.visible
+                })
+            }
+            else { return state }
         default:
             return state
     }
 }
 
-const dropdowns = (state:any = {drops, actions, smartFrame:[]}, action: any) => {
+const dropdowns = (state:any = {drops:[], actions, smartFrame:[]}, action: any) => {
     switch (action.type) {
         case 'ADD_DROPDOWN':{
             return Object.assign(
