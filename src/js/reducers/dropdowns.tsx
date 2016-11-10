@@ -1,19 +1,37 @@
 const actions = {
         changeDirection:(
             id: number,
-            offset: number,
+            el: any,
             dropHeight: number,
-            setDirection: any
+            setDirection: any,
+            setPosition: any
         ) => {
 
-            let timer: any = null
+            let timer: any = undefined,
+                params: any = findPos(el)
+            
+            setPosition(id, findPos(el))
+            setDirection(id, findOffset(dropHeight, params.top))
 
             function findOffset(dropHeight: number, offset: any) {
-                
                 offset = document.documentElement.clientHeight - (offset - window.pageYOffset)
-
                 if(offset >= dropHeight) { return 'bottom' }
                 else { return 'top' }
+            }
+            
+            function findPos(elem:any) {
+                let el:any = elem,
+                    top: number = el.offsetTop,
+                    left: number = el.offsetLeft,
+                    width: number = el.offsetWidth
+
+                while (el.offsetParent !== document.body) {
+                    el = el.offsetParent
+                    top += el.offsetTop
+                    left += el.offsetLeft
+                }
+
+                return {top: top, left: left, width: width}
             }
 
             window.addEventListener('resize',
@@ -21,12 +39,12 @@ const actions = {
                     if(timer) { clearTimeout(timer) }
                     timer = setTimeout(
                         () => {
-                            setDirection(id, findOffset(dropHeight, offset))
+                            params = findPos(el)
+                            setPosition(id, params)
+                            setDirection(id, findOffset(dropHeight, params.top))
                         }
-                        ,300)
+                    ,300)
                 },false)
-
-            setDirection(id, findOffset(dropHeight, offset))
         }
     }
 
